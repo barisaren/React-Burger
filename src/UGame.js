@@ -1,47 +1,71 @@
-import React,{Component} from 'react'
-import SingleGame from './SingleGame'
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { getGames } from "./actions";
+import SingleGame from "./SingleGame";
 
-class UGame extends Component{
+class UGame extends Component {
+  componentWillMount() {
+    this.props.getGames();
+   
+  }
+  handleonClick=()=>{
+    const a=this.value
+    console.log(a);
+  }
+ 
 
-    onDelete = (id) => {
-      const {deleteBurger}=this.props
-      console.log("onDelete", id)
-      deleteBurger(id)
-    }
-    render(){
-      const {burgers}=this.props
-      
-      
-        return (
-          
-          <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Game Name</th>
-              <th scope="col">Game Type</th>
-              <th scope="col">Game Rating</th>
-              <th scope="col">Delete</th>
-            </tr>
-          </thead>
-          <tbody>
-            {burgers.map(burger=>{
-              const {id,name,gameType,Rating}= burger;
-              return <SingleGame
+  render() {
+    const { games } = this.props;
+    console.log(this.props)
+
+    return (
+      <div>
+        <div className="Buttons">
+          <p>Ratings</p>
+          <button value= {1} onClick={this.handleonClick}>1</button>
+          <button value={2} onClick={this.handleonClick}>2</button>
+          <button value={3} onClick={this.handleonClick}>3</button>
+          <button value={4} onClick={this.handleonClick}>4</button>
+          <button value={5} onClick={this.handleonClick}>5</button>
+        </div>
+        <table className="table">
+        
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Game Name</th>
+          <th scope="col">Game Type</th>
+          <th scope="col">Game Rating</th>
+          <th scope="col">Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        {games.map(game => {
+          const { id, name, gameType, rating } = game;
+          return (
+            <SingleGame
               key={id}
               id={id}
               name={name}
               gameType={gameType}
-              rating={Rating}
-              deleteBurger={()=>this.onDelete(id)}
-              />
-
-            })}
-
-            
-          </tbody>
-      </table>
-        )
-    }
+              rating={rating}
+            />
+          );
+        })}
+      </tbody>
+    </table></div>
+      
+    );
+  }
 }
-export default UGame;
+
+const mapStatetoProps = ({ gamereducer }) => {
+  return {
+    games: gamereducer.games
+  };
+};
+
+export default connect(
+  mapStatetoProps,
+  { getGames }
+)(UGame);

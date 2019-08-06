@@ -12,18 +12,18 @@ class AddGame extends Component{
                 <div className='addbody'>
                     <form>
                     <label htmlFor="name">Game Name</label>
-                    <input type="text"  name='name' placeholder='Enter Burger Name'/>
+                    <input type="text"  name='name' placeholder='Enter Game Name'/>
                     <br/>
                  
 
                     <label htmlFor="gametype">Game Type</label>
-                    <input type="text"  name='burgertype' placeholder='Enter Burger Type'/>
+                    <input type="text"  name='gametype' placeholder='Enter Game Type'/>
                     <br/>
 
                     <label htmlFor="gamerating">Game Rating</label>
-                    <input type="text" name='burgerrating' placeholder=' Enter Burger Rating'/>
+                    <input type="text" name='gamerating' placeholder=' Enter Game Rating'/>
                     <br/>
-                    <button type="submit">Add Burger</button>
+                    <button type="submit">Add Game</button>
                     </form>
                     
                 </div>
