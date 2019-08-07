@@ -1,7 +1,9 @@
 import { GET_GAMES, ADD_GAME, DELETE_GAME, SORT_GAME } from "../actions/types";
 
 const initialState = {
-  games: []
+  games: [],
+  sortedgames: [],
+  sorted: false
 };
 
 export default (state = initialState, action) => {
@@ -9,22 +11,24 @@ export default (state = initialState, action) => {
     case GET_GAMES:
       return {
         ...state,
-        games: action.payload
+        games: action.payload,
+        sorted: false
       };
     case ADD_GAME:
       return {
         ...state,
-        games: [...state, action.payload]
+        games: [...state.games, action.payload]
       };
     case DELETE_GAME:
       return {
         ...state,
-        games: state.games.filter((game)=>game.id!==action.payload)
+        games: state.games.filter(game => game.id !== action.payload)
       };
     case SORT_GAME:
       return {
         ...state,
-        games: state.games.filter((game)=>game.rating>=1)  ,
+        sorted: true,
+        sortedgames: state.games.filter(game => game.rating === action.payload)
       };
 
     default:

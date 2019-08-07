@@ -12,6 +12,8 @@ class App extends Component {
         <AddGame />
         
         <UGame sortby={this.state}/>
+    {/*<UGame sortby={this.state}/>*/}
+
 
         
       </div>
